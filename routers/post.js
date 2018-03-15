@@ -44,6 +44,7 @@ router.post("/posts", function(req, res) {
   req.checkBody("poster", "no poster passed").notEmpty();
   req.checkBody("posterId", "no postId passed").notEmpty();
   req.checkBody("posterId", "posterId does not exist").isValidId(userRef);
+  console.log("about to createByAutoId");
   completeRequest(req, res, postLogic.createByAutoId);
 });
 

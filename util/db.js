@@ -54,6 +54,7 @@ function getById(ref, id) {
 }
 
 function createByAutoId(ref, fieldToVal) {
+  console.log("got inside createByAutoId db")
   var childRef = ref.push();
   return _create(childRef, fieldToVal);
 }

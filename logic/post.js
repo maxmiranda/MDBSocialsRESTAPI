@@ -17,6 +17,7 @@ function getById(id) {
 }
 
 function createByAutoId(fieldToVal) {
+  console.log("got inside createByAutoId post")
   return db.createByAutoId(ref, {
     posterId: fieldToVal.posterId,
     poster: fieldToVal.poster,
