@@ -10,10 +10,11 @@ function getById(id) {
 }
 
 function createByManualId(id, fieldToVal) {
-  return db.createByAutoId(ref, fieldToVal.fbId, {
-    fullname: fieldToVal.fullname,
+  return db.createByManualId(ref, fieldToVal.id, {
+    name: fieldToVal.name,
+    username: fieldToVal.username,
     email: fieldToVal.email,
-    profPicUrl: fieldToVal.profPicUrl
+    imageUrl: fieldToVal.imageUrl
   });
 }
 
