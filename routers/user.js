@@ -13,14 +13,6 @@ router.get("/users/:id", function(req, res) {
   });
 });
 
-router.post("/users/:fbId", function(req, res) {
-  req.checkParams("fbId", "no fbId present").notEmpty();
-  req.checkBody("fullname", "no fullname present").notEmpty();
-  req.checkBody("email", "no email present").notEmpty();
-  req.checkBody("profPicUrl", "no profPicUrl present").notEmpty();
-  req.checkBody("profPicUrl", "profPicUrl is not a url").isValidUrl();
-  completeRequest(req, res, userLogic.createByManualId);
-});
 
 router.patch("/users/:id/favorites", function(req, res) {
   req.checkParams("id", "no id present").notEmpty();

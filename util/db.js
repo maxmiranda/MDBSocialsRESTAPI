@@ -43,7 +43,11 @@ function getAll(ref) {
 
 function getById(ref, id) {
   return ref.child(id).once("value").then(function(snapshot) {
-    if (!snapshot.exists()) return Promise.reject(new Error(errNoExist));
+    if (!snapshot.exists()) {
+      return Promise.reject(new Error(errNoExist));
+    } else {
+      return _singleCallback(snapshot);
+    }
   });
 }
 
