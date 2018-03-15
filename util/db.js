@@ -32,7 +32,7 @@ function _multipleCallback(snapshot) {
 function _create(ref, fieldToVal) {
   _setLastUpdated(fieldToVal);
   return ref.set(fieldToVal).then(function() {
-    return getById(ref, ref.key);
+    return getById(ref.parent, ref.key);
   });
 }
 
