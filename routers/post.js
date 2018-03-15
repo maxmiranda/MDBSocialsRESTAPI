@@ -5,11 +5,11 @@ const postLogic = require("../logic/post.js");
 const userRef = require("../logic/user.js").ref;
 
 // ROUTES
-router.get("/Posts", function(req, res) {
+router.get("/posts", function(req, res) {
   completeRequest(req, res, postLogic.getAll);
 });
 
-router.get("/Posts/:id", function(req, res) {
+router.get("/posts/:id", function(req, res) {
   req.checkParams("id", "no id present").notEmpty();
   req.checkParams("id", "post id does not exist").isValidId(postLogic.ref);
   completeRequest(req, res, function(params) {
@@ -17,10 +17,33 @@ router.get("/Posts/:id", function(req, res) {
   });
 });
 
+router.get("/posts/:id", function(req, res) {
+  req.checkParams("id", "no id present").notEmpty();
+  req.checkParams("id", "post id does not exist").isValidId(postLogic.ref);
+  completeRequest(req, res, function(params) {
+    return postLogic.getById(params.id);
+  });
+});
+
+router.patch("/posts/:id/imageUrl", function(req, res) {
+  req.checkParams("id", "no id present").notEmpty();
+  req.checkParams("id", "post id does not exist").isValidId(postLogic.ref);
+  req.checkBody("imageUrl", "imageUrl does not exist").notEmpty();
+  req.checkBody("imageUrl", "imageUrl is not valid url").isValidUrl();
+  completeRequest(req, res, function(params) {
+    return postLogic.updatePost(params.id);
+  });
+}
+
+
 router.post("/Posts", function(req, res) {
-  req.checkBody("imageUrl", "no imageUrl passed").notEmpty();
-  req.checkBody("imageUrl", "imageUrl is not a url").isValidUrl();
-  req.checkBody("posterId", "no posterId passed").notEmpty();
+  req.checkBody("text", "no text passed").notEmpty();
+  req.checkBody("description", "no description passed").notEmpty();
+  req.checkBody("date", "no date passed").notEmpty();
+  req.checkBody("latitude", "no latitude passed").notEmpty();
+  req.checkBody("longitude", "no longitude passed").notEmpty();
+  req.checkBody("poster", "no poster passed").notEmpty();
+  req.checkBody("posterId", "no postId passed").notEmpty();
   req.checkBody("posterId", "posterId does not exist").isValidId(userRef);
   completeRequest(req, res, postLogic.createByAutoId);
 });

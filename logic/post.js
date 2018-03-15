@@ -18,8 +18,27 @@ function getById(id) {
 
 function createByAutoId(fieldToVal) {
   return db.createByAutoId(ref, {
-    imageUrl: fieldToVal.imageUrl,
-    posterId: fieldToVal.posterId
+    posterId: fieldToVal.posterId,
+    poster: fieldToVal.poster,
+    text: fieldToVal.text,
+    description: fieldToVal.description,
+    date: fieldToVal.date,
+    latitude: fieldToVal.latitude,
+    longitude: fieldToVal.longitude
+  });
+}
+
+function updatePost(pid, fieldToVal) {
+  return db.updateById(ref, pid, {
+    imageUrl: fieldToVal.imageUrl
+  });
+}
+
+function interested(pid, uid) {
+  return db.transaction(ref, id, "favoriteIds", function(favoriteIds) {
+    favoriteIds = favoriteIds || [];
+    favoriteIds.push(favId);
+    return favoriteIds;
   });
 }
 
@@ -30,6 +49,7 @@ function notifyNewPost() {
 }
 
 // EXPORTS
+module.exports.interested = interested;
 module.exports.getAll = getAll;
 module.exports.getById = getById;
 module.exports.createByAutoId = createByAutoId;
