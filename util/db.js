@@ -30,8 +30,10 @@ function _multipleCallback(snapshot) {
 }
 
 function _create(ref, fieldToVal) {
+  console.log("got inside _create db")
   _setLastUpdated(fieldToVal);
   return ref.set(fieldToVal).then(function() {
+    console.log("it setted the ref to fieldToVal!")
     return getById(ref.parent, ref.key);
   });
 }
@@ -57,6 +59,7 @@ function createByAutoId(ref, fieldToVal) {
 }
 
 function createByManualId(ref, id, fieldToVal) {
+  console.log("got inside createByManualId db")
   var childRef = ref.child(id);
   return _create(childRef, fieldToVal);
 }

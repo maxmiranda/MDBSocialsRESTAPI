@@ -10,12 +10,12 @@ function getById(id) {
 }
 
 function createByManualId(id, fieldToVal) {
+  console.log("got inside createByManualId logic")
   return db.createByManualId(ref, id, {
     name: fieldToVal.name,
     username: fieldToVal.username,
     email: fieldToVal.email,
     imageUrl: fieldToVal.imageUrl,
-    id: id
   });
 }
 
