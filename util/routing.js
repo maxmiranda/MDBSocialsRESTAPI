@@ -1,6 +1,5 @@
 // HELPERS
 function _getParamsByField(req, result, field) {
-  var result = {};
   for (var key in req[field]) {
     if (req[field][key] != null) {
       result[key] = req[field][key];
