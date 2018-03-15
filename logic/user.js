@@ -10,11 +10,12 @@ function getById(id) {
 }
 
 function createByManualId(id, fieldToVal) {
-  return db.createByManualId(ref, fieldToVal.id, {
+  return db.createByManualId(ref, id, {
     name: fieldToVal.name,
     username: fieldToVal.username,
     email: fieldToVal.email,
-    imageUrl: fieldToVal.imageUrl
+    imageUrl: fieldToVal.imageUrl,
+    id: id
   });
 }
 
