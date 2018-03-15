@@ -49,6 +49,7 @@ function notifyNewPost() {
 }
 
 // EXPORTS
+module.exports.updatePost = updatePost;
 module.exports.interested = interested;
 module.exports.getAll = getAll;
 module.exports.getById = getById;

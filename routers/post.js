@@ -33,10 +33,9 @@ router.patch("/posts/:id/imageUrl", function(req, res) {
   completeRequest(req, res, function(params) {
     return postLogic.updatePost(params.id);
   });
-}
+});
 
-
-router.post("/Posts", function(req, res) {
+router.post("/posts", function(req, res) {
   req.checkBody("text", "no text passed").notEmpty();
   req.checkBody("description", "no description passed").notEmpty();
   req.checkBody("date", "no date passed").notEmpty();
